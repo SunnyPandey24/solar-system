@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the solar system in a dynamic, interactive way.">
+  <meta name="author" content="Your Name">
+  <title>Solar System Interactive</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+    }
+
+    .solar-system {
+      position: relative;
+      width: 80vmin;
+      height: 80vmin;
+      animation: rotate 30s infinite linear;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    
+    .sun {
+      position: absolute;
+      width: 10%;
+      height: 10%;
+      background-color: #f4a300;
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(244, 163, 0, 0.8);
+      z-index: 10;
+    }
+
+    /* Planet Orbits */
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbit 100s infinite linear;
+    }
+
+    .orbit-mercury { --orbit-radius: 10vmin; animation-duration: 5s; }
+    .orbit-venus { --orbit-radius: 15vmin; animation-duration: 10s; }
+    .orbit-earth { --orbit-radius: 20vmin; animation-duration: 15s; }
+    .orbit-mars { --orbit-radius: 25vmin; animation-duration: 19s; }
+    .orbit-jupiter { --orbit-radius: 30vmin; animation-duration: 25s; }
+    .orbit-saturn { --orbit-radius: 48vmin; animation-duration: 32s; }
+    .orbit-uranus { --orbit-radius: 56vmin; animation-duration: 36s; }
+    .orbit-neptune { --orbit-radius: 61vmin; animation-duration: 42s; }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
+    }
+
+    
+    .planet {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 3vmin;
+      height: 3vmin;
+      border-radius: 50%;
+      opacity: 0.8;
+      cursor: pointer;
+      transition: transform 1s ease, box-shadow 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .planet:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+
+    
+    .planet-info {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    .planet:hover .planet-info {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Planet Colors */
+    #mercury { background-color: gray; }
+    #venus { background-color: #f2e200; }
+    #earth { background-color: blue; }
+    #mars { background-color: red; }
+    #jupiter { background-color: #f53009; }
+    #saturn { background-color: #d3b50a; }
+    #uranus { background-color: #00b7eb; }
+    #neptune { background-color: #004a73; }
+
+    /* Responsive Design */
+    @media (max-width: 2) {
+      .solar-system {
+        width: 90vmin;
+        height: 90vmin;
+      }
+
+      .planet {
+        width: 20vmin;
+        height: 20vmin;
+      }
+    }
+
+    
+    .legend {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      max-width: 300px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="solar-system">
+    <div class="sun"></div>
+
+   
+    <div class="orbit orbit-mercury">
+      <div class="planet" id="mercury">
+        <span class="planet-info">Mercury: Smallest planet</span>
+      </div>
+    </div>
+    <div class="orbit orbit-venus">
+      <div class="planet" id="venus">
+        <span class="planet-info">Venus: Hot and toxic atmosphere</span>
+      </div>
+    </div>
+    <div class="orbit orbit-earth">
+      <div class="planet" id="earth">
+        <span class="planet-info">Earth: Our home</span>
+      </div>
+    </div>
+    <div class="orbit orbit-mars">
+      <div class="planet" id="mars">
+        <span class="planet-info">Mars: Known as the Red Planet</span>
+      </div>
+    </div>
+    <div class="orbit orbit-jupiter">
+      <div class="planet" id="jupiter">
+        <span class="planet-info">Jupiter: Largest planet</span>
+      </div>
+    </div>
+    <div class="orbit orbit-saturn">
+      <div class="planet" id="saturn">
+        <span class="planet-info">Saturn: Known for its rings</span>
+      </div>
+    </div>
+    <div class="orbit orbit-uranus">
+      <div class="planet" id="uranus">
+        <span class="planet-info">Uranus: Ice giant</span>
+      </div>
+    </div>
+    <div class="orbit orbit-neptune">
+      <div class="planet" id="neptune">
+        <span class="planet-info">Neptune: Winds reach up to 2,000 km/h</span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="legend">
+    <h3>Solar System Legend</h3>
+    <p><strong>Mercury</strong>: Smallest planet<br>
+       <strong>Venus</strong>: Hot and toxic atmosphere<br>
+       <strong>Earth</strong>: Our home<br>
+       <strong>Mars</strong>:Known as the Red Planet<br>
+       <strong>Jupiter</strong>: Largest planet<br>
+       <strong>Saturn</strong>: Known for its rings<br>
+       <strong>Uranus</strong>: Ice giant<br>
+       <strong>Neptune</strong>: Winds reach up to 2,000 km/h</p>
+     </div>
